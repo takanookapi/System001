@@ -52,7 +52,6 @@ export default function DataTable(props:Props) {
   }
   getPostsData()
   }, []);
-  console.log(posts);
   return (
     <div style={{ height: 1000, width: '100%' }}>
       <DataGrid

@@ -69,6 +69,27 @@ SQL;
         $member->Updated        = date("Y/m/d H:i:s");
         $member->UpdatedBy      = "Default"; //$_SESSION[APP_NAME][Member][MemberName]
         $member->save();
+
+        $member = Member::
+                    select  (
+                                'Member.*',
+                                'MemberStatus.Caption AS MemberStatusCaption',
+                                'MemberClass.Caption AS MemberClassCaption',
+                            )
+                    ->join  (
+                                'MemberClass', 
+                                'MemberClass.MemberClassID', 
+                                '=', 
+                                'Member.MemberClassID'
+                            )
+                    ->join  (
+                                'MemberStatus', 
+                                'MemberStatus.StatusID', 
+                                '=', 
+                                'Member.StatusID'
+                            )
+                    ->where('MemberID', '=', $member->MemberID)
+                    ->get();
         return response()->json($member, 200);
     }
 

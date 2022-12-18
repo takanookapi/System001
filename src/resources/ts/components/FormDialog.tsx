@@ -84,11 +84,10 @@ export default function FormDialog(props:Props) {
             Priority:       formData.Priority,
         })
         .then(response => {
-
             if(posts) {
 
-              setPosts([response.data, ...posts]);
-          }
+              setPosts([response.data[0], ...posts]);
+        }
 
         })
         handleClose();
@@ -105,7 +104,7 @@ export default function FormDialog(props:Props) {
             <DialogContentText>
             </DialogContentText>
               <TextField id="MemberName" label="名前" variant="outlined" className={classes.textArea} name="MemberName" value={props.MemberName} onChange={inputChange}/>
-              <TextField id="Priority" label="優先順位" variant="outlined" className={classes.textArea} name="Priority" value={props.Priority}  onChange={inputChange}/>
+              <TextField id="Priority" label="優先順位" variant="outlined" className={classes.textArea} name="Priority" value={props.Priority} onChange={inputChange}/>
               <SelectStatus name="StatusID" memberStatus={memberStatus} selectChange={selectChange}/>
               <SelectMemberClass name="MemberClassID" memberClass={memberClass} selectChange={selectChange}/>
           </DialogContent>
