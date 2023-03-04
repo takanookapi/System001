@@ -5,13 +5,13 @@ import {
     Route,
     Switch,
   } from 'react-router-dom';
-import Member from './pages/Member';
+import Member from './admin/Member';
 
   function App() {
     return (
         <div>
             <Switch>
-                <Route path='/member' exact component={Member} />
+                <Route path='/admin/member' exact component={Member} />
             </Switch>
         </div>
     );

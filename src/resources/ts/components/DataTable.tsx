@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
-import Delete from '../components/Delete';
+import DeleteDialog from '../components/DeleteDialog';
 // import EditDialog from '../components/EditDialog';
 
 
@@ -12,7 +12,7 @@ const columns = [
     sortable: false,
     width: 90,
     disableClickEventBubbling: true,
-    renderCell: (params:any) => <Delete rowId={ params.id } />
+    renderCell: (params:any) => <DeleteDialog MemberID={ params.id } />
   },
   {
     field: 'editBtn',
@@ -36,18 +36,18 @@ type Props = {
   posts:any
 }
 
-export default function DataTable(props:Props) {
+function DataTable(props:Props) {
   const {posts,setPosts} = props;
 
   React.useEffect(() => {
-    const getPostsData = async(search?:string) => {
-    await axios
-          .get(`/api/members?MemberName=${search === undefined ? "" : search}`)
-          .then(response => {
-            setPosts(response.data);
-        })
-          .catch(() => {
-              console.log('通信に失敗しました');
+    const getPostsData = async(keyword?: string) => {
+      await axios
+            .get(`/api/members?MemberName=${keyword === undefined ? "" : keyword}`)
+            .then(response => {
+              setPosts(response.data);
+          })
+            .catch(() => {
+                console.log('通信に失敗しました');
           });
   }
   getPostsData()
@@ -72,3 +72,5 @@ export default function DataTable(props:Props) {
     </div>
   );
 }
+
+export default DataTable;

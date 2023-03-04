@@ -20,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'api'], function(){
     Route::get('members', 'App\Http\Controllers\Api\MemberController@index');
-    Route::post('member/create', 'App\Http\Controllers\Api\MemberController@create');
-    Route::post('edit', 'App\Http\Controllers\Api\MemberController@edit');
-    Route::post('update', 'App\Http\Controllers\Api\MemberController@update');
-    Route::post('delete', 'App\Http\Controllers\Api\MemberController@delete');
+    Route::post('/member/create', 'App\Http\Controllers\Api\MemberController@create');
+    Route::post('/member/edit', 'App\Http\Controllers\Api\MemberController@edit');
+    Route::post('/member/update', 'App\Http\Controllers\Api\MemberController@update');
+    Route::post('/member/delete', 'App\Http\Controllers\Api\MemberController@delete');
     Route::get('memberClasses', 'App\Http\Controllers\Api\MemberClassController@index');
     Route::get('memberStatuses', 'App\Http\Controllers\Api\MemberStatusController@index');
 

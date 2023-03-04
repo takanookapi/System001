@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
-    // postの一覧を表示する
+    //一覧を表示する
     public function index(Request $request)
     {
         $keyword = $request->input('MemberName', '');
@@ -40,6 +40,7 @@ class MemberController extends Controller
         return response()->json($members, 200);
     }
 
+    //新規入力する際に優先順位が空でもデフォルトで数値が入るようにする
     public function maxPriority()
     {
         $sql = <<< SQL
@@ -55,6 +56,7 @@ SQL;
         return $res;
     }
 
+    //会員作成
     public function create(Request $request)
     {
         $priority = self::maxPriority();
@@ -93,7 +95,7 @@ SQL;
         return response()->json($member, 200);
     }
 
-    //編集画面に遷移するためのアクション
+    //編集するデータを一行見つける
     public function edit(Request $request)
     {
         $member = Member::find($request->id);
@@ -119,11 +121,11 @@ SQL;
 
     }
 
+    //会員削除
     public function delete(Request $request)
     {
         $member = Member::find($request->MemberID);
         $member->delete();
-        $members = Member::all();
-        return response()->json($members, 200);;
+        return response()->json($member, 200);;
     }
 }

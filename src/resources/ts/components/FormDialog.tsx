@@ -45,7 +45,8 @@ const useStyles = makeStyles((theme) => createStyles({
 export default function FormDialog(props:Props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [formData, setFormData] = React.useState<FormData>({});
+  const [formData, setFormData] = React.useState<FormData>({
+  });
   const {posts, setPosts, memberStatus ,memberClass} = props;
 
   const handleClickOpen = () => {
@@ -77,7 +78,7 @@ export default function FormDialog(props:Props) {
     }
     // 入力値を投げる
     await axios
-        .post('api/member/create', {
+        .post('/api/member/create', {
             MemberName:     formData.MemberName,
             MemberClassID:  formData.MemberClassID,
             StatusID:       formData.StatusID,
